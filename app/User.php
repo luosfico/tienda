@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -16,9 +16,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','surname','rut','email','password',
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -36,4 +35,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+    public function asignarRole($role)
+    {
+        $this->roles()->sync($role, false);
+    }
+    public function dispatchaddress()
+    {
+        return $this->hasMany(DispatchAddress::class);
+    }
+    public function obtenerRole()
+    {
+        return $this->roles->flatten()->pluck('name')->unique();
+    }
 }

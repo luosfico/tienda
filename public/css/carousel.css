@@ -3,18 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-top: 5rem;
-  padding-bottom: 3rem;
-  color: #5a5a5a;
-}
-
-
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
-.carousel {
-  margin-bottom: 2rem;
+    padding-top: 5rem;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
