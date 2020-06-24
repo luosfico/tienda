@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 @section('title') Inicio @endsection
 @section('header')
 <!-- Custom styles for this template -->

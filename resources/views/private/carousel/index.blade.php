@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.private')
 @section('title') Carousel @endsection
 @section('header')
 <style>
@@ -7,92 +7,104 @@
 @endsection
 
 @section('content')
-    <div class="row-account">
-    <div class="container-fluid col-lg-2 text-center">
-        <h5>Administrar Pagina</h5>
-        <hr />
-        <nav class="navbar navbar-light bg-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Accesos Directos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Clientes</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Administrar Carousel</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item active">Carousel</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <section class="carousel-admin col-lg-10">
-        <h3> Administración de Carousel</h3>
-        <br>
-        <a href="{{route('carousel.create')}}" class="btn-default"><i class="fas fa-plus-circle"></i> Nuevo Carousel</a>
-        <div class="row">
-            <div class="col-lg-12 row">
-                <div class="card  col-lg-8">
-                    <img src="{{ asset('img/carousel/carousel1-full.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Imagen Full</h5>
-                        <p class="card-text">Link: .</p>
-                        <div class="row">
-                            <button class="btn-primary"> Actualizar</button>
-                            <button class="btn-success"> Habilitado</button>
-                            <button class="btn-danger"> Eliminar</button>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Boton y alertas -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <a href="{{ route('carousel.create') }}">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-image"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text text-bold text-dark">Registrar Nuevo</span>
+                                <span class="info-box-text text-bold text-dark">Carousel</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <div class="card  col-lg-3">
-                    <img src="{{ asset('img/carousel/carousel1-mobile.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Imagen Movil</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 row">
-                <div class="card  col-lg-8">
-                    <img src="{{ asset('img/carousel/carousel2-full.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Imagen Full</h5>
-                        <p class="card-text">Link: .</p>
-                        <div class="row">
-                            <button class="btn-primary"> Actualizar</button>
-                            <button class="btn-success"> Habilitado</button>
-                            <button class="btn-danger"> Eliminar</button>
+                <!-- Contenido -->
+                <div class="col-lg-12 container-fluid">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Carousel Registrados</h3>
                         </div>
-                    </div>
-                </div>
-                <div class="card  col-lg-3">
-                    <img src="{{ asset('img/carousel/carousel2-mobile.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Imagen Movil</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 row">
-                <div class="card  col-lg-8">
-                    <img src="{{ asset('img/carousel/carousel3-full.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Imagen Full</h5>
-                        <p class="card-text">Link: .</p>
-                        <div class="row">
-                            <button class="btn-primary"> Actualizar</button>
-                            <button class="btn-success"> Habilitado</button>
-                            <button class="btn-danger"> Eliminar</button>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Imagen Full</th>
+                                    <th>Imagen Movil</th>
+                                    <th style="width: 40px">Estado</th>
+                                    <th>Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php  $X= 0 ?>
+                                @foreach($carousel as $item)
+                                <?php  $X= $X+1 ?>
+                                <tr>
+                                    <td>{{$X}}.</td>
+                                    <td @if(!$item->visible) style="filter: grayscale(100%);"@endif><img src="{{ asset('/img/carousel/'.$item->imageFull)}}" height="100px"></td>
+                                    <td @if(!$item->visible) style="filter: grayscale(100%);"@endif><img src="{{ asset('/img/carousel/'.$item->imageMobile)}}" height="100px"></td>
+                                    @if($item->visible)
+                                        <td><span class="badge bg-success">Visible</span></td>
+                                    @else
+                                        <td><span class="badge bg-secondary">No Visible</span></td>
+                                    @endif
+                                    <!-- -->
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-info btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                <button type="button" class="btn btn-info btn-sm">Opciones</button>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item" href="{{route('carousel.edit', $item->id)}}">Actualizar</a>
+                                                    @if($item->visible)
+                                                        <a class="dropdown-item" href="#">Deshabilitar</a>
+                                                    @else
+                                                        <a class="dropdown-item" href="#">Habilitar</a>
+                                                    @endif
+                                                    <a class="dropdown-item" href="{{route('carousel.destroy',$item->id)}}">Eliminar</a>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                </div>
-                <div class="card  col-lg-3">
-                    <img src="{{ asset('img/carousel/carousel3-mobile.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Imagen Movil</h5>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">»</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
     </div>
 @endsection
 

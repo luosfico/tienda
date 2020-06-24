@@ -25,9 +25,13 @@ class CarouselHomeController extends Controller
 
     public function store(Request $request)
     {
+
+
+        $carousel       = CarouselHome::all();
+        $position       = $carousel->count()+1;
         $date           = date("ymd");
-        $fileFull       = $request->file('image-full');
-        $fileMobile     = $request->file('image-mobile');
+        $fileFull       = $request->file('ImageFull');
+        $fileMobile     = $request->file('ImageMobile');
 
         $namefileFull   = request('position').'carousel'.'F'.$date.'-full.'.$fileFull->getClientOriginalExtension();
         $namefileMobile = request('position').'carousel'.'F'.$date.'-mobile.'.$fileMobile->getClientOriginalExtension();
@@ -36,7 +40,7 @@ class CarouselHomeController extends Controller
 
         $carousel = new CarouselHome();
 
-        $carousel->position     = request('position');
+        $carousel->position     = $position;
         $carousel->imageFull    = $namefileFull;
         $carousel->imageMobile  = $namefileMobile;
         $carousel->visible      = true;

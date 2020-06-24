@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 @section('title') Verificar Cuenta @endsection
 @section('content')
     <section class="section-verificación">

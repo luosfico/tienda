@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.private')
 @section('title') Nuevo Carousel @endsection
 @section('header')
 <style>
@@ -7,75 +7,121 @@
 @endsection
 
 @section('content')
-    <div class="row row-account">
-    <div class="container-fluid col-lg-2 text-center">
-        <h5>Administrar Pagina</h5>
-        <hr />
-        <nav class="navbar navbar-light bg-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Accesos Directos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Clientes</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <section class="carousel-admin col-lg-10">
-        <h3> Crear Carousel</h3>
-        <div class="row">
-            <form action="/carousel" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
-            @csrf
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="position">Posición del Carousel</label>
-                    </div>
-                    <select class="custom-select" id="position" name="position">
-                        <option selected>Seleccionar...</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-
-                    </select>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Nuevo Carousel</h1>
                 </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="image-full">Archivo Full</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image-full" name="image-full" aria-describedby="image-full">
-                        <label class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo</label>
-                    </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('carousel.index') }}">Carousel</a></li>
+                        <li class="breadcrumb-item active">Nuevo Carousel</li>
+                    </ol>
                 </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="image-full">Archivo Movil</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image-mobile" name="image-mobile" aria-describedby="image-full">
-                        <label class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo</label>
-                    </div>
-                </div>
-                <button class="btn-default" type="submit">Registrar Carousel</button>
-            </form>
+            </div>
+            <a href="{{ URL::asset('img/carousel/Plantilla-Promo-Full.psd')}}" type="reset" class="btn btn-primary">Descargar Plantilla Full</a>
+            <a href="{{ URL::asset('img/carousel/Plantilla-Promo-Mobile.psd')}}" type="reset" class="btn btn-primary">Descargar Plantilla Movil</a>
         </div>
-    </section>
+    </div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Contenido -->
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Se han detectado errores!</h5>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Datos del Carousel</h3>
+                        </div>
+
+                        <form action="/carousel" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="ImageFull" class="col-form-label">Imagen Full</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="ImageFull" name="ImageFull" accept="image/*">
+                                                <label class="custom-file-label" id="imageFullText" for="ImageFull">Seleccinar un archivo...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="ImageMobile" class="col-form-label">Imagen Movil</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="ImageMobile" name="ImageMobile" accept="image/*">
+                                                <label class="custom-file-label" id="imageMobileText" for="ImageMobile">Seleccinar un archivo...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="url" class="col-form-label">URL</label>
+                                            <select disabled id="url" name="url" class="form-control">
+                                                <option>Seleccionar</option>
+                                                <option value="1">Si</option>
+                                                <option selected value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="url" class="col-form-label">Tipo de URL</label>
+                                            <select disabled id="url" name="url" class="form-control">
+                                                <option selected>Seleccionar</option>
+                                                <option value="0">Categoria</option>
+                                                <option value="0">Marca</option>
+                                                <option value="0">Producto</option>
+                                                <option value="0">Personalizada</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="url" class="col-form-label">Seleccionar XXXXXX</label>
+                                            <select disabled id="url" name="url" class="form-control">
+                                                <option selected>Seleccionar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">Crear Carousel</button>
+                                <button type="reset" class="btn btn-info">Limpiar</button>
+                                <input type="button" class="btn btn-danger float-right" onclick="location.href='/carousel'" value="Cancelar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('script')
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
 @endsection

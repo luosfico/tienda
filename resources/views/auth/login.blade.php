@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 @section('title') Ingresar @endsection
 @section('content')
     <section class="login">
