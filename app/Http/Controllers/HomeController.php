@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CarouselHome;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index','products']);
     }
 
     /**
@@ -23,11 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        //$carousels = CarouselHome::orderBy('position','ASC')->get();
+        $carousels = CarouselHome::where('visible','=',true)->orderBy('position','ASC')->get();
+
+        return view('public.index',['carousels' => $carousels]);
+    }
+
+    public function products()
+    {
+        return view('public.products.index');
     }
 
     public function account()
     {
-        return view('account');
+        return view('private.account');
     }
 }

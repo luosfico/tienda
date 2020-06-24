@@ -3,7 +3,7 @@
 @section('content')
     <section class="register">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center" style="margin-top: -62px;margin-bottom: -62px;">
                 <div class="col-lg-6 col-md-6">
                     <div class="box-registro text-center register-item">
                         <img src="https://img.icons8.com/color/144/000000/music-band.png">

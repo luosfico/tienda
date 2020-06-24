@@ -87,6 +87,10 @@ body{
 .navbar-light .navbar-nav .active > .nav-link-user{
     background-color: #1b00ff17;
 }
+.navbar-nav .nav-link{
+    padding: 0.5rem;
+    margin: 2px;
+}
 .navbar-brand{
     margin-left: 4em;
 }
@@ -374,6 +378,22 @@ footer .credito-desarrollo{
 }
 .section-verificación .container{
     padding:130px 0;
+}
+.box-acceso{
+    margin: 15px;
+}
+.box-acceso p{
+    margin: 0 15px;
+    height: 52px;
+    text-align: center;
+}
+.row-account{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0 !important;
+    margin-left: -15px;
 }
 @media (max-width: 576px) {
     .section-verificación .container{

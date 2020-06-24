@@ -13,5 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes(['verify' => true]);
+
 Route::get('/', 'HomeController@index')->name('index');
+Route::get('/productos', 'HomeController@products')->name('productos');
 Route::get('/account', 'HomeController@account')->name('account')->middleware('verified');
+Route::resource('carousel', 'CarouselHomeController');
+Route::resource('productos', 'ProductController');
+

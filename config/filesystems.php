@@ -47,6 +47,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
+        'carousel' => [
+            'driver' => 'local',
+            'root' => public_path().'/img/carousel',
+        ],
 
         'public' => [
             'driver' => 'local',

@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{route('index')}}"><i class="fas fa-home"></i> Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-shopping-basket"></i> Productos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
