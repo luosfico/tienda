@@ -18,6 +18,56 @@
         <link rel="stylesheet" href="{{ asset('css/adminlte.min.css')}}">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <style>
+            #preloader:before {
+                content: "";
+                position: fixed;
+                top: calc(50% - 50px);
+                left: calc(50% - 50px);
+                border: 8px solid #cc1a1a;
+                border-top-color: #f9d2d2;
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                -webkit-animation: animate-preloader 0.6s linear infinite;
+                animation: animate-preloader 0.6s linear infinite;
+            }
+            #preloader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 9999;
+                overflow: hidden;
+                background: #fff;
+            }
+            .img-preloader{
+                top: 50%;
+                width: 62px;
+                height: 62px;
+                position: absolute;
+                left: 50%;
+                margin-top: -31px;
+                margin-left: -31px;
+            }
+            @-webkit-keyframes animate-preloader {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes animate-preloader {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
         @yield('header')
     </head>
 <body class="hold-transition sidebar-mini skin-red-light">

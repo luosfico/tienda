@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('account') }}">Inicio</a></li>
                         <li class="breadcrumb-item active">Carousel</li>
                     </ol>
                 </div>
@@ -81,7 +81,11 @@
                                                     @else
                                                         <a class="dropdown-item" href="#">Habilitar</a>
                                                     @endif
-                                                    <a class="dropdown-item" href="{{route('carousel.destroy',$item->id)}}">Eliminar</a>
+                                                    <form action="{{route('carousel.destroy', $item->id)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="dropdown-item" type="submit">Eliminar</button>
+                                                    </form>
                                                 </div>
                                             </button>
                                         </div>

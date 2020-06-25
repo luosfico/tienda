@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CarouselHome;
+use Carbon\Carbon;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
@@ -25,16 +27,14 @@ class CarouselHomeController extends Controller
 
     public function store(Request $request)
     {
-
-
         $carousel       = CarouselHome::all();
         $position       = $carousel->count()+1;
-        $date           = date("ymd");
+        $date           = Carbon::now();
         $fileFull       = $request->file('ImageFull');
         $fileMobile     = $request->file('ImageMobile');
 
-        $namefileFull   = request('position').'carousel'.'F'.$date.'-full.'.$fileFull->getClientOriginalExtension();
-        $namefileMobile = request('position').'carousel'.'F'.$date.'-mobile.'.$fileMobile->getClientOriginalExtension();
+        $namefileFull   = 'carousel'.'F'.$date->timestamp.'-full.'.$fileFull->getClientOriginalExtension();
+        $namefileMobile = 'carousel'.'F'.$date->timestamp.'-mobile.'.$fileMobile->getClientOriginalExtension();
         Storage::disk('carousel')->put($namefileFull, File::get($fileFull));
         Storage::disk('carousel')->put($namefileMobile, File::get($fileMobile));
 
@@ -49,49 +49,45 @@ class CarouselHomeController extends Controller
 
         return redirect('/carousel');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    }
     public function edit($id)
     {
-        //
+        $carousel = CarouselHome::findOrFail($id);
+        return view('private.carousel.edit',['carousel' => $carousel] );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $carousel = CarouselHome::findOrFail($id);
+        if(request('ImageFull')) {
+            $fileFull = $request->file('ImageFull');
+            $nameFileFull = $carousel->imageFull;
+            Storage::disk('carousel')->delete($carousel->imageFull);
+            Storage::disk('carousel')->put($nameFileFull, File::get($fileFull));
+        }
+        if(request('ImageMobile')) {
+            $fileMobile = $request->file('ImageMobile');
+            $nameFileMobile = $carousel->imageMobile;
+            Storage::disk('carousel')->delete($carousel->imageMobile);
+            Storage::disk('carousel')->put($nameFileMobile, File::get($fileMobile));
+        }
+        $carousel->visible      = true;
+        $carousel->URL          = null;
+        $carousel->update();
+
+        return redirect('/carousel');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $carousel =  CarouselHome::findOrFail($id);
+        Storage::disk('carousel')->delete($carousel->imageFull);
+        Storage::disk('carousel')->delete($carousel->imageMobile);
+        $carousel->delete();
+        //Session::flash('productDelete',$productDelete);
+        return redirect('/carousel');
     }
 }

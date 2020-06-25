@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Nuevo Carousel</h1>
+                    <h1 class="m-0 text-dark">Actulizar Carousel</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,8 @@
                             <h3 class="card-title">Datos del Carousel</h3>
                         </div>
 
-                        <form action="/carousel" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('carousel.update', $carousel->id) }}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data" >
+                            @method('PATCH')
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -102,11 +103,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-
                                     <div class="col-sm-7">
                                         <div class="position-relative">
-                                            <img id="ImageFullPicture" src="{{URL::asset('/img/carousel/default-full.png')}}" alt="Imagen-Full" class="img-fluid">
+                                            <img id="ImageFullPicture" src="{{URL::asset('/img/carousel/'.$carousel->imageFull)}}" alt="Imagen-Full" class="img-fluid">
                                             <div class="ribbon-wrapper ribbon-lg">
                                                 <div class="ribbon bg-info">
                                                     Imagen Full
@@ -117,7 +116,7 @@
 
                                     <div class="col-sm-2">
                                         <div class="position-relative">
-                                            <img id="ImageMobilePicture" src="{{URL::asset('/img/carousel/default-mobile.png')}}" alt="Imagen-Mobile" class="img-fluid">
+                                            <img id="ImageMobilePicture" src="{{URL::asset('/img/carousel/'.$carousel->imageMobile)}}" alt="Imagen-Mobile" class="img-fluid">
                                             <div class="ribbon-wrapper ribbon-lg">
                                                 <div class="ribbon bg-info">
                                                     Imagen Movil
@@ -125,14 +124,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
 
                                 </div>
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Crear Carousel</button>
-                                <button type="reset" class="btn btn-info" onclick="resetImages()">Limpiar</button>
+                                <button type="submit" class="btn btn-success">Actualizar Carousel</button>
+                                <button type="reset" class="btn btn-info">Limpiar</button>
                                 <input type="button" class="btn btn-danger float-right" onclick="location.href='/carousel'" value="Cancelar">
                             </div>
                         </form>
@@ -156,8 +154,6 @@
                 reader.onloadend = function () {
                     document.getElementById("ImageFullPicture").src = reader.result;
                 }
-            }else{
-                document.getElementById("ImageFullPicture").src = "{{URL::asset('/img/carousel/default-mobile.png')}}";
             }
         }
         function showImageMobile(){
@@ -169,10 +165,6 @@
                     document.getElementById("ImageMobilePicture").src = reader.result;
                 }
             }
-        }
-        function resetImages() {
-            document.getElementById("ImageFullPicture").src = "{{URL::asset('/img/carousel/default-full.png')}}";
-            document.getElementById("ImageMobilePicture").src = "{{URL::asset('/img/carousel/default-mobile.png')}}";
         }
     </script>
 @endsection

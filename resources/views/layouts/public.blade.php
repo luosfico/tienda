@@ -61,7 +61,7 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu" aria-labelledby="navbarDropdown">
                             @can('Administrador')
                             <a class="dropdown-item" href="{{ route('account') }}">
-                                Administrar Sitiogit
+                                Administrar Sitio
                             </a>
                             @endcan
                             <a class="dropdown-item" href="{{ route('logout') }}"
