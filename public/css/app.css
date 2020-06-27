@@ -59,12 +59,15 @@ body{
 .container{
     padding: 20px;
 }
-.user-item .nav-link{
+.user-item .nav-link, .nav-car a{
     color: #3f00ff !important;
 }
 .user-item .nav-link:hover,
-.user-item .nav-link:focus{
+.user-item .nav-link:focus, .nav-car a{
     background-color: #1b00ff17 !important;
+}
+.nav-car a{
+    border-radius: 15px;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -173,7 +176,7 @@ body{
     margin-bottom: 10px;
 }
 .imagen-producto{
-    border-radius: 50px;
+    border-radius: 30px;
     max-width: 100%;
     -webkit-transition:all .5s ease; /* Safari y Chrome */
     -moz-transition:all .5s ease; /* Firefox */
@@ -243,14 +246,14 @@ body{
     background: linear-gradient(to right, #ff9bd2, #ff1f38) !important;
 }
 .titulo-producto{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     margin: 0;
     font-family: "Roboto", sans-serif;
 }
 .precio-producto{
     font-size: 19px;
-    font-weight: 500;
+    font-weight: 800;
     text-align: right;
     font-family: monospace;
     margin: -10px 0 0 0;
@@ -267,7 +270,7 @@ body{
     background-color: #ff000017;
 }
 .card{
-    border-radius: 30px;
+    border-radius: 20px;
     margin: 10px;
     background-color: #c4e1fb80;
 }
@@ -395,8 +398,63 @@ footer .credito-desarrollo{
     margin-right: 0 !important;
     margin-left: -15px;
 }
+.producto-imagen-seccion {
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 2rem;
+}
+.producto-imagen-miniatura img{
+    box-shadow: 0 1px 2px rgba(0,0,0,.075);
+    border-radius: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: 1rem;
+    max-width: 7rem;
+    padding: .5rem;
+}
+.producto-imagen-miniatura:hover {
+    opacity: .5;
+}
+.producto-imagen-show{
+    max-width: 80%;
+    height: auto;
+    width: 100%;
+}
+.button-car{
+   background-color: #3f00ff !important;
+    border-color: #3f00ff !important;
+}
+.button-car:hover{
+    color: #3f00ff !important;
+    background-color: #ffffff !important;
+    border-color: #8b8b8b !important;
+}
+.badge{
+    border-radius: 1.25rem;
+}
+.carro-compras{
+    width: 400px;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    min-height: 100%;
+    margin-top: 0;
+}
+.contenido-carro{
+    margin: 15em 0;
+}
+.carro-vacio{
+    display: contents;
+}
 @media (max-width: 576px) {
     .section-verificación .container{
         padding: 85px 0;
+    }
+    .nav-link{
+        text-align: center;
     }
 }

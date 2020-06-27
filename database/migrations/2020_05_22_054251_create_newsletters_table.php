@@ -17,7 +17,7 @@ class CreateNewslettersTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subtitle')->nullable();
-            $table->string('content');
+            $table->text('content');
             $table->string('mainImage');
             $table->string('URL');
             $table->timestamps();

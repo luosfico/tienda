@@ -3,31 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\CarouselHome;
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth')->except(['index','products']);
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        //$carousels = CarouselHome::orderBy('position','ASC')->get();
         $carousels = CarouselHome::where('visible','=',true)->orderBy('position','ASC')->get();
+        $categories = Category::all();
+        $productsNew = Product::where('offerPrice',null)->orderby('created_at','ASC')->limit(4)->get();
+        $productsOffer = Product::where('offerPrice','!=',null)->orderby('created_at','ASC')->limit(4)->get();
 
-        return view('public.index',['carousels' => $carousels]);
+        return view('public.index',['carousels' => $carousels,
+            'categories'=>$categories,
+            'productsOffer'=>$productsOffer,
+            'productsNew'=>$productsNew]);
     }
 
     public function products()

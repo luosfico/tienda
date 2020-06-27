@@ -1,53 +1,72 @@
-@extends('layouts.app')
-@section('title') Productos @endsection
+@extends('layouts.private')
+@section('title') Nueva Marca @endsection
 @section('header')
-<style>
+    <style>
 
-</style>
+    </style>
 @endsection
 
 @section('content')
-    <div class="row row-account">
-    <div class="container-fluid col-lg-2 text-center">
-        <h5>Administrar Pagina</h5>
-        <hr />
-        <nav class="navbar navbar-light bg-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Accesos Directos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category.index') }}">Categorias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('brand.index') }}">Marcas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.index') }}">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Clientes</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Nueva Marca</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('brand.index') }}">Marcas</a></li>
+                        <li class="breadcrumb-item active">Nueva Marca</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </div>
-    <section class="account col-lg-10">
-        <div class="container">
-            <h5>Crear Nueva Marca</h5>
-            <form action="/brand" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Contenido -->
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Se han detectado errores!</h5>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Datos de la Marca</h3>
+                        </div>
+
+                        <form action="/brand" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="ImageFull" class="col-form-label">Nombre de la Marca</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">Crear Marca</button>
+                                <button type="reset" class="btn btn-info" onclick="resetImages()">Limpiar</button>
+                                <input type="button" class="btn btn-danger float-right" onclick="location.href='/brand'" value="Cancelar">
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default">Registrar Marca</button>
-            </form>
+            </div>
         </div>
-    </section>
     </div>
 @endsection
 
 @section('script')
-
 @endsection

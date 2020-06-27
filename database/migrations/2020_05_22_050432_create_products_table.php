@@ -20,14 +20,14 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('model');
             $table->string('SKU');
-            $table->string('image');
+            $table->string('principalImage');
             $table->integer('stock');
             $table->integer('standardPrice');
             $table->integer('currentPrice')->nullable();
             $table->integer('offerPrice')->nullable();
             $table->dateTime('expirationOfferPrice')->nullable();
-            $table->string('description');
-            $table->integer('qualification');
+            $table->text('description');
+            $table->integer('qualification')->nullable();
             $table->string('URL');
             $table->timestamps();
 

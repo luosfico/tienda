@@ -1,5 +1,5 @@
 @extends('layouts.private')
-@section('title') Nuevo Carousel @endsection
+@section('title') Actualizar Carousel @endsection
 @section('header')
 <style>
 
@@ -55,7 +55,7 @@
                                             <label for="ImageFull" class="col-form-label">Imagen Full</label>
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="ImageFull" name="ImageFull" accept="image/*" onchange="showImageFull()">
-                                                <label class="custom-file-label" id="imageFullText" for="ImageFull">Seleccinar un archivo...</label>
+                                                <label class="custom-file-label" id="imageFullText" for="ImageFull">{{$carousel->imageFull}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@
                                             <label for="ImageMobile" class="col-form-label">Imagen Movil</label>
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="ImageMobile" name="ImageMobile" accept="image/*" onchange="showImageMobile()">
-                                                <label class="custom-file-label" id="imageMobileText" for="ImageMobile">Seleccinar un archivo...</label>
+                                                <label class="custom-file-label" id="imageMobileText" for="ImageMobile">{{$carousel->imageMobile}}</label>
                                             </div>
                                         </div>
                                     </div>

@@ -60,7 +60,7 @@
                                 @foreach($carousel as $item)
                                 <?php  $X= $X+1 ?>
                                 <tr>
-                                    <td>{{$X}}.</td>
+                                    <td>{{$X}}</td>
                                     <td @if(!$item->visible) style="filter: grayscale(100%);"@endif><img src="{{ asset('/img/carousel/'.$item->imageFull)}}" height="100px"></td>
                                     <td @if(!$item->visible) style="filter: grayscale(100%);"@endif><img src="{{ asset('/img/carousel/'.$item->imageMobile)}}" height="100px"></td>
                                     @if($item->visible)
@@ -97,13 +97,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
+                            {{ $carousel->links() }}
                         </div>
                     </div>
                 </div>

@@ -34,12 +34,14 @@
                     <a class="nav-link" href="{{route('index')}}"><i class="fas fa-home"></i> Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ !Route::is('product*') ?: 'active' }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-shopping-basket"></i> Productos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Acordeones</a>
-                        <a class="dropdown-item" href="#">Accesorios</a>
+                        <!-- foreach($categories as $category) -->
+                            <a class="dropdown-item" href="#">Acordeones</a>
+                            <a class="dropdown-item" href="#">Accesorios</a>
+                        <!-- endforeach -->
                     </div>
                 </li>
                 <li class="nav-item">
@@ -50,37 +52,40 @@
                 </li>
                 <!-- Menu Usuario -->
                 @guest
-                    <li class="nav-item user-item {{ Request::is('login') ? 'active' : null }}">
+                    <li class="nav-item user-item {{ !Route::is('login*') ?: 'active' }}">
                         <a class="nav-link nav-link-user" href="{{route('login')}}"><i class="far fa-user-circle"></i> {{ __('Login') }}</a>
                     </li>
                 @else
-                    <li class="nav-item dropdown user-item">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="far fa-user-circle"></i> {{ Auth::user()->name }}
+                <li class="nav-item dropdown user-item">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle"></i> {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu" aria-labelledby="navbarDropdown">
+                        @can('admin')
+                        <a class="dropdown-item" href="{{ route('account') }}">
+                            Administrar Sitio
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu" aria-labelledby="navbarDropdown">
-                            @can('Administrador')
-                            <a class="dropdown-item" href="{{ route('account') }}">
-                                Administrar Sitio
-                            </a>
-                            @endcan
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                        @endcan
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
                 @endguest
             </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item nav-car">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#carro-compras"><i class="fas fa-shopping-cart"></i> Mi Carro
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 </header>
@@ -96,6 +101,32 @@
 <div id="preloader">
     <img src="{{ URL::asset('img/logo-load.png')}}" class="img-preloader">
 </div>
+<!-- Modal Carro Compras -->
+<div class="modal fade fadeInRight" id="carro-compras" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog carro-compras">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mi Carro de compras</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="contenido-carro">
+                    <img src="https://img.icons8.com/color/48/000000/empty-box.png"/><img src="https://img.icons8.com/color/48/000000/sad.png"/>
+                    <p>Tu carro de compras esta vacio</p>
+                </div>
+            </div>
+            <div class="modal-footer carro-vacio">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <!--<button type="button" class="btn btn-primary">Completar Compra</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -->
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

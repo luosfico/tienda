@@ -82,18 +82,6 @@
                 <a href="{{ route('index') }}" class="nav-link">Volver al sitio</a>
             </li>
         </ul>
-
-        <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
         <!-- Notificaciones -->
         <!--
         <ul class="navbar-nav ml-auto">
@@ -204,7 +192,7 @@
                     <img src="https://img.icons8.com/color/160/000000/administrator-male--v1.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ Auth::user()->name }} {{ Auth::user()->surname }}</a>
+                    <a href="#" class="d-block">{{ Auth::user()->name.' '.Auth::user()->surname }}</a>
                 </div>
             </div>
 
@@ -212,7 +200,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="{{ route('account') }}" class="{{ Request::path() === 'account' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="{{ route('account') }}" class="nav-link {{ !Route::is('account*') ?: 'active' }}">
                             <i class="nav-icon fas fa-external-link-square-alt"></i>
                             <p>
                                 Accesos Directos
@@ -221,7 +209,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('account') }}" class="{{ Request::path() === 'user' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="#" class="nav-link {{ !Route::is('user*') ?: 'active' }}">
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
                                 Usuarios de Sistema
@@ -230,7 +218,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('account') }}" class="{{ Request::path() === 'client' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="#" class="nav-link {{ !Route::is('client*') ?: 'active' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Clientes
@@ -239,7 +227,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('category.index') }}" class="{{ Request::path() === 'client' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="{{ route('category.index') }}" class="nav-link {{ !Route::is('category*') ?: 'active' }}">
                             <i class="nav-icon fas fa-sort"></i>
                             <p>
                                 Categorias
@@ -248,7 +236,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('brand.index') }}" class="{{ Request::path() === 'brand' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="{{ route('brand.index') }}" class="nav-link {{ !Route::is('brand*') ?: 'active' }}">
                             <i class="nav-icon fas fa-copyright"></i>
                             <p>
                                 Marcas
@@ -257,7 +245,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('product.index') }}" class="{{ Request::path() === 'product' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="{{ route('product.index') }}" class="nav-link {{ !Route::is('product*') ?: 'active' }}">
                             <i class="nav-icon fas fa-shopping-basket"></i>
                             <p>
                                 Productos
@@ -266,7 +254,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('carousel.index') }}" class="{{ Request::path() === 'carousel' ? 'nav-link active' : 'nav-link' }}">
+                        <a href="{{ route('carousel.index') }}" class="nav-link {{ !Route::is('carousel*') ?: 'active' }}">
                             <i class="nav-icon fas fa-images"></i>
                             <p>
                                 Carousel

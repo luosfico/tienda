@@ -1,5 +1,5 @@
 @extends('layouts.private')
-@section('title') Nueva Categoria @endsection
+@section('title') Actualizar Categoria @endsection
 @section('header')
 <style>
 
@@ -11,13 +11,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Nueva Categoria</h1>
+                    <h1 class="m-0 text-dark">Actualizar Categoria</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item active">Nueva Categoria</li>
+                        <li class="breadcrumb-item active">Actualizar Categoria</li>
                     </ol>
                 </div>
             </div>
@@ -42,21 +42,22 @@
                             <h3 class="card-title">Datos de la Categoria</h3>
                         </div>
 
-                        <form action="/category" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('category.update', $category->id) }}" method="POST" class="form-horizontal" role="form">
+                            @method('PATCH')
                             @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="ImageFull" class="col-form-label">Nombre de la categoria</label>
-                                            <input type="text" class="form-control" id="name" name="name">
+                                            <input value="{{ $category->name }}" type="text" class="form-control" id="name" name="name">
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Crear Categoria</button>
+                                <button type="submit" class="btn btn-success">Actualizar Categoria</button>
                                 <button type="reset" class="btn btn-info" onclick="resetImages()">Limpiar</button>
                                 <input type="button" class="btn btn-danger float-right" onclick="location.href='/category'" value="Cancelar">
                             </div>

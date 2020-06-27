@@ -51,6 +51,10 @@ return [
             'driver' => 'local',
             'root' => public_path().'/img/carousel',
         ],
+        'product' => [
+            'driver' => 'local',
+            'root' => public_path().'/img/productos',
+        ],
 
         'public' => [
             'driver' => 'local',

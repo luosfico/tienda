@@ -3,6 +3,17 @@
 @section('header')
 <!-- Custom styles for this template -->
 <link href="css/carousel.css" rel="stylesheet">
+    <style>
+        @media (max-width: 576px) {
+            .col-xs-6{
+                width: 50% !important;
+                padding: 0;
+            }
+            .cabecera-superior {
+                padding: 14px 18px;
+            }
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -39,70 +50,24 @@
                 <h3><i class="fas fa-bahai"></i> Productos Nuevos</h3>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a class="producto-link" href="#">
+                @foreach($productsNew as $product)
+                <div class="col-lg-3 col-md-6 col-xs-6">
+                    <a class="producto-link" href="{{ route('product.show',$product->URL) }}">
                     <div class="card">
                         <div class="card-body">
                             <div class="cabecera-superior">
                                 <div class="etiqueta-nuevo">Nuevo</div>
                             </div>
                             <div class="producto-img-item">
-                                <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
+                                <img class="imagen-producto" src="{{ asset('/img/productos/'.$product->SKU.'/'.$product->principalImage)}}" alt="img-product">
                             </div>
-                            <p class="titulo-producto">Acordeon XXX</p>
-                            <p class="precio-producto">$399.990</p>
+                            <p class="titulo-producto">{{ $product->name }}</p>
+                            <p class="precio-producto">${{number_format($product->currentPrice,0,'','.')}}</p>
                         </div>
                     </div>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a class="producto-link" href="#">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="cabecera-superior">
-                                    <div class="etiqueta-nuevo">Nuevo</div>
-                                </div>
-                                <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
-                                </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto">$399.990</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a class="producto-link" href="#">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="cabecera-superior">
-                                    <div class="etiqueta-nuevo">Nuevo</div>
-                                </div>
-                                <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
-                                </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto">$399.990</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a class="producto-link" href="#">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="cabecera-superior">
-                                    <div class="etiqueta-nuevo">Nuevo</div>
-                                </div>
-                                <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
-                                </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto">$399.990</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -113,7 +78,7 @@
                 <h3><i class="fas fa-bullhorn"></i></i> Ofertas</h3>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-md-6">
                     <a class="producto-link" href="#">
                         <div class="card">
                             <div class="card-body">

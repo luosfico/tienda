@@ -15,7 +15,7 @@ class CarouselHomeController extends Controller
 
     public function index()
     {
-        $carousel = CarouselHome::all();
+        $carousel = CarouselHome::orderBy('id','asc')->paginate(5);
         return view( 'private.carousel.index',['carousel' => $carousel] );
     }
 
