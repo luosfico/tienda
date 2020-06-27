@@ -78,58 +78,7 @@
                 <h3><i class="fas fa-bullhorn"></i></i> Ofertas</h3>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <a class="producto-link" href="#">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="cabecera-superior">
-                                    <div class="etiqueta-oferta">Oferta</div>
-                                </div>
-                                <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
-                                </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto normal-oferta">$399.990</p>
-                                <p class="precio-producto oferta">$329.990</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="producto-link" href="#">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="cabecera-superior">
-                                    <div class="etiqueta-oferta">Oferta</div>
-                                </div>
-                                <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
-                                </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto normal-oferta">$399.990</p>
-                                <p class="precio-producto oferta">$329.990</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="producto-link" href="#">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="cabecera-superior">
-                                    <div class="etiqueta-oferta">Oferta</div>
-                                </div>
-                                <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
-                                </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto normal-oferta">$399.990</p>
-                                <p class="precio-producto oferta">$329.990</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-xs-6">
                     <a class="producto-link" href="#">
                         <div class="card">
                             <div class="card-body">

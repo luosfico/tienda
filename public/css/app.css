@@ -176,7 +176,7 @@ body{
     margin-bottom: 10px;
 }
 .imagen-producto{
-    border-radius: 30px;
+    border-radius: 25px;
     max-width: 100%;
     -webkit-transition:all .5s ease; /* Safari y Chrome */
     -moz-transition:all .5s ease; /* Firefox */
@@ -196,7 +196,7 @@ body{
     left: 0;
     right: 0;
     width: 100%;
-    padding: 35px 40px;
+    padding: 21px 21px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -267,7 +267,9 @@ body{
     color: blue;
 }
 .section-two{
-    background-color: #ff000017;
+    background-image: -moz-linear-gradient(top, #ffffff 0%, #ffffff 10%, #ff5d2d7d 54%, #ffba0082 80%,#ffffff 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 10%, #ff5d2d7d 54%, #ffba0082 80%,#ffffff 100%);
+    background-image: -ms-linear-gradient(top, #ffffff 0%,#ffffff 10%, #ff5d2d7d 54%, #ffba0082 80%,#ffffff 100%);
 }
 .card{
     border-radius: 20px;
@@ -357,15 +359,22 @@ body{
 }
 /* Footer */
 footer{
-    background-color: #ff000017;
+    background-image: -moz-linear-gradient(top, #ffffff 0%,#f5dede 10%, #f9131087 54%, #f91008b0 90%,#f9100899 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,#f5dede 10%, #f9131087 54%, #f91008b0 90%,#f9100899 100%);
+    background-image: -ms-linear-gradient(top, #ffffff 0%,#f5dede 10%, #f9131087 54%, #f91008b0 90%,#f9100899 100%);
 }
 footer .credito-erp{
     padding: 10px 0 0 0;
+    font-weight: 600;
 }
 footer .credito-desarrollo{
     margin: 0;
     font-weight: 700;
     font-size: small;
+    color: #ffffff;
+}
+.credito-desarrollo a{
+    color: #dcdcdc;
 }
 .section-verificación{
     background-image: -moz-linear-gradient(16deg, #fc2f2fc7 0%, #ff5d2dc7 64%, #ffba00c7 100%);
@@ -404,6 +413,7 @@ footer .credito-desarrollo{
     display: -ms-flexbox;
     display: flex;
     margin-top: 2rem;
+    overflow-x: auto;
 }
 .producto-imagen-miniatura img{
     box-shadow: 0 1px 2px rgba(0,0,0,.075);
@@ -423,6 +433,9 @@ footer .credito-desarrollo{
     max-width: 80%;
     height: auto;
     width: 100%;
+}
+.btn-productos div{
+    margin: 0.1em 0;
 }
 .button-car{
    background-color: #3f00ff !important;
@@ -445,7 +458,7 @@ footer .credito-desarrollo{
     margin-top: 0;
 }
 .contenido-carro{
-    margin: 15em 0;
+    margin: 13em 0;
 }
 .carro-vacio{
     display: contents;

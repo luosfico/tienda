@@ -36,7 +36,7 @@
                             </h4>
                         </div>
 
-                        <div class="mt-4">
+                        <div class="text-center btn-productos">
                             <div class="btn btn-default btn-lg btn-flat button-car">
                                 <i class="fas fa-cart-plus fa-lg mr-2"></i>
                                 Agregar al Carro
@@ -64,7 +64,7 @@
 
                     </div>
                 </div>
-            
+
         <div class="row mt-4">
                     <nav class="w-100">
                         <div class="nav nav-tabs" id="product-tab" role="tablist">
