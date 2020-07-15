@@ -6,6 +6,7 @@ use App\Brand;
 use App\Category;
 use App\Image;
 use App\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -84,8 +85,9 @@ class ProductController extends Controller
     {
         $product = Product::where('URL',$URL)->first();
         $images = Image::where('product_id',$product->id)->get();
+        $cart = Cart::content();
 
-        return view ('public.product.show',['product'=>$product,'images'=>$images]);
+        return view ('public.product.show',['product'=>$product,'images'=>$images,'cart'=>$cart]);
     }
 
     public function edit($id)

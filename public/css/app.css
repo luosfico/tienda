@@ -95,7 +95,7 @@ body{
     margin: 2px;
 }
 .navbar-brand{
-    margin-left: 4em;
+    margin-left: 5em;
 }
 .dropdown-menu {
     position: absolute;
@@ -441,10 +441,17 @@ footer .credito-desarrollo{
    background-color: #3f00ff !important;
     border-color: #3f00ff !important;
 }
+.button-car a{
+    color : #ffffff;
+}
 .button-car:hover{
     color: #3f00ff !important;
     background-color: #ffffff !important;
     border-color: #8b8b8b !important;
+}
+.button-car:hover a {
+    color: #3f00ff;
+    text-decoration: none;
 }
 .badge{
     border-radius: 1.25rem;
@@ -457,17 +464,45 @@ footer .credito-desarrollo{
     min-height: 100%;
     margin-top: 0;
 }
-.contenido-carro{
-    margin: 13em 0;
+.carro-item{
+    min-height: 36em;
 }
 .carro-vacio{
     display: contents;
 }
+.carro-vacio-contenido{
+    margin: 15em 0;
+}
+.img-car{
+    max-width: 5em;
+}
+.text-cart{
+    text-align: left;
+    font-size: 15px;
+}
+.text-cart a{
+    color: #fa2f2f;
+}
+.text-cart a:hover{
+    color: #fa2f2f;
+}
+.button-cart i{
+    margin: 20px 0px;
+    font-size: 22px;
+    color: #fa2f2f;
+}
+/*** Vista Movil ***/
 @media (max-width: 576px) {
     .section-verificación .container{
         padding: 85px 0;
     }
     .nav-link{
         text-align: center;
+    }
+    .carro-vacio-contenido {
+        margin: 10em 0;
+    }
+    .carro-item{
+        min-height: 26em;
     }
 }

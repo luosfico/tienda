@@ -38,8 +38,7 @@
 
                         <div class="text-center btn-productos">
                             <div class="btn btn-default btn-lg btn-flat button-car">
-                                <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                                Agregar al Carro
+                                <a href="{{route('cart.add', $product->id)}}"><i class="fas fa-cart-plus fa-lg mr-2"></i> Agregar al Carro</a>
                             </div>
                             <div class="btn btn-default btn-lg btn-flat">
                                 <i class="fas fa-heart fa-lg mr-2"></i>
@@ -83,8 +82,34 @@
     </section>
 @endsection
 
+@section('modal')
+    <div class="modal fade" id="cart-notification">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Producto Agregado</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4>Su producto ha sigo agregado<br>al carro de compras</h4>
+                    <img src="https://img.icons8.com/color/48/000000/add-shopping-cart.png"/>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <a type="button" class="btn btn-default button-car" href="{{route('cart.index')}}">Mi Carro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
 @section('script')
 <script>
+    @if(Session::has('message'))
+    $('#cart-notification').modal('toggle')
+    @endif
     $('.producto-imagen-miniatura').on('click', function() {
         const image_element = $(this).find('img');
         $('.producto-imagen-show').prop('src', $(image_element).attr('src'))

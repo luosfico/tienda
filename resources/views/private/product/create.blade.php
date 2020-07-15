@@ -149,7 +149,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="offerPrice" class="col-form-label">Precio Oferta</label>
-                                            <input value="{{ old('offerPrice') }}" type="number" class="form-control" id="offerPrice" name="offerPrice" placeholder="$0" disabled onkeyup="changeCurrency()">
+                                            <input value="{{ old('offerPrice') }}" type="text" class="form-control" id="offerPrice" name="offerPrice" placeholder="$0" disabled onkeyup="changeCurrency()">
                                         </div>
                                     </div>
 
@@ -255,7 +255,7 @@
                                                 <img id="Image-File6" src="{{URL::asset('/img/productos/default.png')}}" alt="Imagen-Mobile" class="img-fluid">
                                                 <div class="ribbon-wrapper ribbon-lg">
                                                     <div class="ribbon bg-info">
-                                                        5ta Imagen
+                                                        6ta Imagen
                                                     </div>
                                                 </div>
                                             </div>

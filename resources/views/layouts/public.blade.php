@@ -13,7 +13,7 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <!-- Final css -->
-        <link href="{{ asset('css/app.css')}}" rel="stylesheet">
+        <link href="{{ asset('css/app.css')}}?v=<?=time();?>" rel="stylesheet">
         <!-- Font Awesome-->
         <script src="https://kit.fontawesome.com/59fac228a5.js" crossorigin="anonymous"></script>
         @yield('header')
@@ -82,7 +82,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item nav-car">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#carro-compras"><i class="fas fa-shopping-cart"></i> Mi Carro
-                        <span class="badge badge-danger navbar-badge">3</span>
+                        <span class="badge badge-danger navbar-badge">{{$cart->count('qty')}}</span>
                     </a>
                 </li>
             </ul>
@@ -102,7 +102,7 @@
     <img src="{{ URL::asset('img/logo-load.png')}}" class="img-preloader">
 </div>
 <!-- Modal Carro Compras -->
-<div class="modal fade fadeInRight" id="carro-compras" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade fadeInRight" id="carro-compras" tabindex="-1" role="dialog" aria-labelledby="carro-compras" aria-hidden="true">
     <div class="modal-dialog carro-compras">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,8 +113,28 @@
             </div>
             <div class="modal-body text-center">
                 <div class="contenido-carro">
-                    <img src="https://img.icons8.com/color/48/000000/empty-box.png"/><img src="https://img.icons8.com/color/48/000000/sad.png"/>
-                    <p>Tu carro de compras esta vacio</p>
+                    @if($cart->count() == 0)
+                        <div class="carro-vacio-contenido">
+                            <!-- Carro Compras Vacio -->
+                            <img src="https://img.icons8.com/color/48/000000/empty-box.png"/><img src="https://img.icons8.com/color/48/000000/sad.png"/>
+                            <p>Tu carro de compras esta vacio</p>
+                        </div>
+                    @else
+                        <!-- Carro Compras con productos -->
+                        <div class="carro-item">
+                            <table class="table table-borderless">
+                                <tbody>
+                                @foreach($cart as $item)
+                                <tr>
+                                    <td><img class="img-car" src="{{ asset('/img/productos/'.$item->model->SKU.'/'.$item->model->principalImage)}}" alt="Product Image"></th>
+                                    <td class="text-cart">{{$item->name}}<br>${{ number_format($item->price,0,'','.')}} <strong>x {{$item->qty}}<br><a>SKU: {{$item->model->SKU}}</strong></a> </td>
+                                    <td><a class="button-cart" href="#"><i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="modal-footer carro-vacio">
@@ -125,7 +145,7 @@
     </div>
 </div>
 <!-- -->
-
+@yield('modal')
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

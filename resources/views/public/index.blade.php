@@ -52,7 +52,7 @@
             <div class="row">
                 @foreach($productsNew as $product)
                 <div class="col-lg-3 col-md-6 col-xs-6">
-                    <a class="producto-link" href="{{ route('product.show',$product->URL) }}">
+                    <a class="producto-link" href="{{ route('producto.show',$product->URL) }}">
                     <div class="card">
                         <div class="card-body">
                             <div class="cabecera-superior">
@@ -72,32 +72,36 @@
         </div>
     </section>
 
+    @if($productsOffer->count() > 0 )
     <section class="productos-oferta section-two">
         <div class="container">
             <div class="text-center titulo-seccion">
                 <h3><i class="fas fa-bullhorn"></i></i> Ofertas</h3>
             </div>
             <div class="row">
+                @foreach($productsOffer as $product)
                 <div class="col-lg-3 col-md-6 col-xs-6">
-                    <a class="producto-link" href="#">
+                    <a class="producto-link" href="{{ route('product.show',$product->URL) }}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="cabecera-superior">
                                     <div class="etiqueta-oferta">Oferta</div>
                                 </div>
                                 <div class="producto-img-item">
-                                    <img class="imagen-producto" src="{{ asset('/img/productos/skuproducto1/image1.jpg')}}" alt="img-product">
+                                    <img class="imagen-producto" src="{{ asset('/img/productos/'.$product->SKU.'/'.$product->principalImage)}}" alt="img-product">
                                 </div>
-                                <p class="titulo-producto">Acordeon XXX</p>
-                                <p class="precio-producto normal-oferta">$399.990</p>
-                                <p class="precio-producto oferta">$329.990</p>
+                                <p class="titulo-producto">{{ $product->name }}</p>
+                                <p class="precio-producto normal-oferta">${{number_format($product->standardPrice,0,'','.')}}</p>
+                                <p class="precio-producto oferta">${{number_format($product->offerPrice,0,'','.')}}</p>
                             </div>
                         </div>
                     </a>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
+    @endif
 
     <section id="contacto">
 

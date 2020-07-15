@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CarouselHome;
 use App\Category;
 use App\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,13 +18,15 @@ class HomeController extends Controller
     {
         $carousels = CarouselHome::where('visible','=',true)->orderBy('position','ASC')->get();
         $categories = Category::all();
-        $productsNew = Product::where('offerPrice',null)->orderby('created_at','ASC')->limit(4)->get();
+        $productsNew = Product::where('offerPrice',null)->orderby('created_at','DESC')->limit(4)->get();
         $productsOffer = Product::where('offerPrice','!=',null)->orderby('created_at','ASC')->limit(4)->get();
+        $cart = Cart::content();
 
         return view('public.index',['carousels' => $carousels,
             'categories'=>$categories,
             'productsOffer'=>$productsOffer,
-            'productsNew'=>$productsNew]);
+            'productsNew'=>$productsNew,
+            'cart'=>$cart]);
     }
 
     public function products()
