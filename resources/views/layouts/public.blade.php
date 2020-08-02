@@ -17,6 +17,26 @@
         <!-- Font Awesome-->
         <script src="https://kit.fontawesome.com/59fac228a5.js" crossorigin="anonymous"></script>
         @yield('header')
+        <!-- Codigo Verificador SKU -->
+        <?php
+        function controlDigit($ean){
+            $par=0;
+            $impar=0;
+            $first=1;
+            // Empezamos por el final
+            for ($i=strlen($ean)-1; $i>=0; $i--){
+                if($first%2 == 0){
+                    $par += $ean[$i];
+                }else{
+                    $impar += $ean[$i]*3;
+                }
+                $first++;
+            }
+            $control = ($par+$impar)%10;
+            if($control > 0){$control = 10 - $control;}
+            return $control;
+        }
+        ?>
         <!-- Custom styles for this template -->
         <link href="{{ asset('css/carousel.css')}}" rel="stylesheet">
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -38,10 +58,9 @@
                         <i class="fas fa-shopping-basket"></i> Productos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- foreach($categories as $category) -->
-                            <a class="dropdown-item" href="#">Acordeones</a>
-                            <a class="dropdown-item" href="#">Accesorios</a>
-                        <!-- endforeach -->
+                        @foreach($categories as $category)
+                            <a class="dropdown-item" href="#">{{$category->name}}</a>
+                        @endforeach
                     </div>
                 </li>
                 <li class="nav-item">
@@ -82,7 +101,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item nav-car">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#carro-compras"><i class="fas fa-shopping-cart"></i> Mi Carro
-                        <span class="badge badge-danger navbar-badge">{{$cart->count('qty')}}</span>
+                        <span class="badge badge-danger navbar-badge">{{Cart::count()}}</span>
                     </a>
                 </li>
             </ul>
@@ -127,8 +146,8 @@
                                 @foreach($cart as $item)
                                 <tr>
                                     <td><img class="img-car" src="{{ asset('/img/productos/'.$item->model->SKU.'/'.$item->model->principalImage)}}" alt="Product Image"></th>
-                                    <td class="text-cart">{{$item->name}}<br>${{ number_format($item->price,0,'','.')}} <strong>x {{$item->qty}}<br><a>SKU: {{$item->model->SKU}}</strong></a> </td>
-                                    <td><a class="button-cart" href="#"><i class="far fa-trash-alt"></i></a></td>
+                                    <td class="text-cart">{{$item->name}}<br>${{ number_format($item->price,0,'','.')}} <strong>x {{$item->qty}}<br><a>SKU: {{$item->model->SKU.controlDigit($item->model->SKU)}}</strong></a> </td>
+                                    <td><a class="button-cart" href="{{ route('cart.deleteItem',$item->rowId) }}"><i class="far fa-trash-alt"></i></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -137,10 +156,16 @@
                     @endif
                 </div>
             </div>
-            <div class="modal-footer carro-vacio">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <!--<button type="button" class="btn btn-primary">Completar Compra</button>-->
-            </div>
+            @if($cart->count() == 0)
+                <div class="modal-footer carro-vacio">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            @else
+                <div class="modal-footer carro-no-vacio">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <a href="{{route('cart.index')}}" type="button" class="btn btn-default button-car">Ir al Carro</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

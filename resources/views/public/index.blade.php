@@ -43,7 +43,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
+    @if($productsNew->count() > 0 )
     <section class="productos-nuevos">
         <div class="container">
             <div class="text-center titulo-seccion">
@@ -71,6 +71,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     @if($productsOffer->count() > 0 )
     <section class="productos-oferta section-two">
@@ -81,7 +82,7 @@
             <div class="row">
                 @foreach($productsOffer as $product)
                 <div class="col-lg-3 col-md-6 col-xs-6">
-                    <a class="producto-link" href="{{ route('product.show',$product->URL) }}">
+                    <a class="producto-link" href="{{ route('producto.show',$product->URL) }}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="cabecera-superior">

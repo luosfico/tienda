@@ -84,10 +84,15 @@ class ProductController extends Controller
     public function show($URL)
     {
         $product = Product::where('URL',$URL)->first();
+        $categories = Category::all();
         $images = Image::where('product_id',$product->id)->get();
         $cart = Cart::content();
 
-        return view ('public.product.show',['product'=>$product,'images'=>$images,'cart'=>$cart]);
+        return view ('public.product.show',[
+            'product'=>$product,
+            'categories'=>$categories,
+            'images'=>$images,
+            'cart'=>$cart]);
     }
 
     public function edit($id)

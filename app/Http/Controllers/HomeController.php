@@ -19,7 +19,7 @@ class HomeController extends Controller
         $carousels = CarouselHome::where('visible','=',true)->orderBy('position','ASC')->get();
         $categories = Category::all();
         $productsNew = Product::where('offerPrice',null)->orderby('created_at','DESC')->limit(4)->get();
-        $productsOffer = Product::where('offerPrice','!=',null)->orderby('created_at','ASC')->limit(4)->get();
+        $productsOffer = Product::where('offerPrice','!=',null)->orderby('created_at','DESC')->limit(4)->get();
         $cart = Cart::content();
 
         return view('public.index',['carousels' => $carousels,

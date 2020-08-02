@@ -1,9 +1,6 @@
 @extends('layouts.private')
 @section('title') Productos @endsection
 @section('header')
-    <style>
-
-    </style>
     <?php
     function controlDigit($ean){
         $par=0;

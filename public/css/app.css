@@ -250,6 +250,7 @@ body{
     font-weight: 500;
     margin: 0;
     font-family: "Roboto", sans-serif;
+    min-height: 3em;
 }
 .precio-producto{
     font-size: 19px;
@@ -288,7 +289,6 @@ body{
 .login-item, .register-item, .login-form, .register-form{
     padding: 80px 70px;
     height: 500px;
-    display: table;
 }
 .login-item h2,.register-item h2, .verify-item h2{
     font-size: 24px;
@@ -325,6 +325,27 @@ body{
 .verify-item{
     color: #ffffff;
 }
+.login-transaction{
+    padding: 80px 70px;
+    height: 500px;
+    background-color: #ff646814;
+    background-size: 100% auto;
+    border-radius: 30px;
+    color: #ffffff;
+}
+.login-transaction h3{
+    font-size: 1.5rem;
+    color: #fc2f2f;
+    font-weight: 600;
+}
+.login-transaction label{
+    margin-bottom: 0;
+    color: #000000;
+}
+.login-transaction img{
+    margin-top: -3em;
+}
+
 /* Estilo Boton */
 .btn-default{
     display: inline-block;
@@ -469,6 +490,16 @@ footer .credito-desarrollo{
 }
 .carro-vacio{
     display: contents;
+    border: none;
+}
+.carro-no-vacio{
+    display: block;
+    padding: 0px;
+    margin: 0 50px;
+    border: none;
+}
+.carro-no-vacio a{
+    color: #ffffff;
 }
 .carro-vacio-contenido{
     margin: 15em 0;
@@ -491,6 +522,38 @@ footer .credito-desarrollo{
     font-size: 22px;
     color: #fa2f2f;
 }
+.botones-carro{
+    margin-top: 3em;
+}
+.button-limpiar{
+    background-color: #fc2f2f !important;
+    border-color: #fc2f2f !important;
+}
+.button-limpiar a{
+    color : #ffffff;
+}
+.button-limpiar:hover{
+    color: #fc2f2f !important;
+    background-color: #ffffff !important;
+    border-color: #8b8b8b !important;
+}
+.button-limpiar:hover a {
+    color: #fc2f2f;
+    text-decoration: none;
+}
+.nav-transaction li>a{
+    color: rgba(0,0,0,.5);
+}
+.nav-transaction .active>a{
+    color: #fc2f2f;
+}
+.nav-transaction .separador{
+    display: block;
+    width: 35px;
+    height: 2px;
+    background-color: #6a6a6a;
+    margin: 21px -74px;
+}
 /*** Vista Movil ***/
 @media (max-width: 576px) {
     .section-verificación .container{
@@ -504,5 +567,11 @@ footer .credito-desarrollo{
     }
     .carro-item{
         min-height: 26em;
+    }
+    .botones-carro{
+        text-align: center;
+    }
+    .botones-carro div{
+        margin-top: 10px;
     }
 }

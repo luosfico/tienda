@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Category;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        $cart = Cart::content();
+        $categories = Category::all();
+        return view ('auth.login',
+            ['categories'=>$categories,
+            'cart'=>$cart]);
     }
 }
