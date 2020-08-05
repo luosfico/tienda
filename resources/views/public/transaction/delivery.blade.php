@@ -29,7 +29,7 @@
                 </ul>
             </div>
 
-            <div class="col-lg-8 col-md-8 offset-2">
+            <div class="col-lg-8 col-md-8 offser-lg-2 offset-md-2">
                 <form method="POST" action="{{route('pay.transaction')}}" novalidate="novalidate">
                     @csrf
                     <div class="row">

@@ -27,13 +27,13 @@
                         <div class="bg-gray py-2 px-3 mt-4">
                             @if($product->offerPrice)
                                 <h6 class="mb-0" style="color:red">Antes:</h6>
-                                <h5 style="color:red">${{ number_format($product->standardPrice,0,'','.')}}</h5>
+                                <h5 style="color:red">${{ number_format($product->standardPrice,0,',','.')}}</h5>
                                 <h6 class="mb-0" style="color:#3f00ff">Ahora:</h6>
-                                <h2 class="mb-0" style="color:#3f00ff">${{ number_format($product->offerPrice,0,'','.')}}</h2>
+                                <h2 class="mb-0" style="color:#3f00ff">${{ number_format($product->offerPrice,0,',','.')}}</h2>
                                 <h4 class="mt-0"><small>IVA Incluido</small></h4>
                             @else
                                 <h6 class="mb-0" style="color:#3f00ff">Valor:</h6>
-                                <h2 class="mb-0" style="color:#3f00ff">${{ number_format($product->currentPrice,0,'','.')}}</h2>
+                                <h2 class="mb-0" style="color:#3f00ff">${{ number_format($product->currentPrice,0,',','.')}}</h2>
                                 <h4 class="mt-0"><small>IVA Incluido</small></h4>
                             @endif
                         </div>

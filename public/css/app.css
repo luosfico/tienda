@@ -10,15 +10,15 @@ body{
 #preloader:before {
     content: "";
     position: fixed;
-    top: calc(50% - 50px);
-    left: calc(50% - 50px);
-    border: 8px solid #cc1a1a;
-    border-top-color: #f9d2d2;
+    top: calc(50% - 70px);
+    left: calc(50% - 70px);
+    border: 3px solid;
+    border-color: #f1a19c #aa9bff #ff0000;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    -webkit-animation: animate-preloader 0.6s linear infinite;
-    animation: animate-preloader 0.6s linear infinite;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: animate-preloader 0.4s linear infinite;
+    animation: animate-preloader 0.4s linear infinite;
 }
 #preloader {
     position: fixed;
@@ -32,12 +32,12 @@ body{
 }
 .img-preloader{
     top: 50%;
-    width: 62px;
-    height: 62px;
+    width: 82px;
+    height: 82px;
     position: absolute;
     left: 50%;
-    margin-top: -31px;
-    margin-left: -31px;
+    margin-top: -51px;
+    margin-left: -51px;
 }
 @-webkit-keyframes animate-preloader {
     0% {
@@ -366,6 +366,9 @@ body{
     color: #fc2f2f;
     text-decoration: none;
 }
+.btn-default:focus{
+    outline: none;
+}
 .btn-full{
     width: 100%;
     margin: 10px 0;
@@ -474,6 +477,9 @@ footer .credito-desarrollo{
     color: #3f00ff;
     text-decoration: none;
 }
+.button-car:focus{
+    outline: none;
+}
 .badge{
     border-radius: 1.25rem;
 }
@@ -553,6 +559,18 @@ footer .credito-desarrollo{
     height: 2px;
     background-color: #6a6a6a;
     margin: 21px -74px;
+}
+.img2-carro{
+    margin-left: -33px;
+    margin-top: -67px;
+}
+.title-confirmation-icon{
+    margin-top: 20px;
+}
+.title-confirmation{
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: 200;
 }
 /*** Vista Movil ***/
 @media (max-width: 576px) {

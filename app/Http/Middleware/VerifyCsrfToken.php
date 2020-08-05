@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        '/webpay/voucher','carro-compras/confirmacion'
     ];
 }

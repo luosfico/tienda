@@ -10,6 +10,7 @@
             document.cookie = 'same-site-cookie=foo; SameSite=Lax';
             document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
         </script>
+        @yield('header')
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <!-- Final css -->
@@ -66,7 +67,7 @@
     </footer>
 </main>
 <div id="preloader">
-    <img src="{{ URL::asset('img/logo-load.png')}}" class="img-preloader">
+    <img src="{{ URL::asset('img/logo-load.gif')}}" class="img-preloader">
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>

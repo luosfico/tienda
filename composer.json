@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "olimortimer/laravelshoppingcart": "^4.0"
+        "olimortimer/laravelshoppingcart": "^4.0",
+        "transbank/transbank-sdk": "^1.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

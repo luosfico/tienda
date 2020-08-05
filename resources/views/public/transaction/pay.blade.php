@@ -29,41 +29,20 @@
                 </ul>
             </div>
 
-            <div class="col-lg-8 col-md-8 offset-2">
-                <form method="POST" action="{{route('pay.transaction')}}" novalidate="novalidate">
+            <div class="col-lg-8 col-md-8 offser-lg-2 offset-md-2">
+                <form method="POST" action="{{route('webpay.pagar')}}" novalidate="novalidate">
                     @csrf
                     <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="region" class="col-form-label">Región</label>
-                                <select id="region" name="region" class="form-control">
-                                    <option selected>Seleccionar Región</option>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="region" class="col-form-label">Ciudad</label>
-                                <select id="region" name="region" class="form-control">
-                                    <option selected>Seleccionar Ciudad</option>
-
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="address" class="col-form-label">Dirección</label>
-                                <input value="" type="text" class="form-control" id="address" name="address" placeholder="EJ: Calle Sotomayor 102, Pobl. Las Amapolas">
+                                <label for="address" class="col-form-label">Total</label>
+                                <label for="address" class="col-form-label">{{Cart::total()}}</label>
                             </div>
                         </div>
 
                         <div class="col-md-12 form-group">
                             <button type="submit" value="submit" class="btn-default btn-full">
-                                Continuar
+                                Confirmar y Pagar
                             </button>
                         </div>
                     </div>

@@ -22,11 +22,19 @@ Route::get('vaciar-carro','CartController@destroy')->name('cart.destroy');
 Route::get('eliminar-item/{item}','CartController@deleteItem')->name('cart.deleteItem');
 
 Route::get('carro-compras', 'CartController@index')->name('cart.index');
-Route::get('carro-compras/login-checkout','TransactionController@loginCheckout')->name('login.transaction');
-Route::match(['get', 'post'],'carro-compras/despacho', 'TransactionController@stepOne')->name('delivery.transaction');
-Route::match(['get','post'],'carro-compras/pago', 'TransactionController@stepTwo')->name('pay.transaction');
+Route::get('carro-compras/login-checkout','CartController@loginCheckout')->name('login.transaction');
+Route::match(['get', 'post'],'carro-compras/despacho', 'CartController@stepOne')->name('delivery.transaction');
+Route::match(['get','post'],'carro-compras/pago', 'CartController@stepTwo')->name('pay.transaction');
+
+
 Route::resource('carousel', 'CarouselHomeController');
 Route::resource('category', 'CategoryController');
 Route::resource('brand', 'BrandController');
 Route::resource('product', 'ProductController');
 
+//Webpay
+
+Route::post('carro-compras/pagar', 'CartController@pay')->name('webpay.pagar');
+Route::get('webpay/token', 'CartController@token')->name('webpay.token');
+Route::post('webpay/voucher', 'CartController@voucher')->name('webpay.voucher');
+Route::match(['get','post'],'carro-compras/confirmacion', 'CartController@confirmation')->name('webpay.final');

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="webstyle.cl">
+        <link rel="shortcut icon" type="image/png" href="{{ asset('img/favicon.ico')}}">
         <title>@yield('title') - {{ config('app.name') }}</title>
         <script>
             document.cookie = 'same-site-cookie=foo; SameSite=Lax';
@@ -118,7 +119,7 @@
     </footer>
 </main>
 <div id="preloader">
-    <img src="{{ URL::asset('img/logo-load.png')}}" class="img-preloader">
+    <img src="{{ URL::asset('img/logo-load.gif')}}" class="img-preloader">
 </div>
 <!-- Modal Carro Compras -->
 <div class="modal fade fadeInRight" id="carro-compras" tabindex="-1" role="dialog" aria-labelledby="carro-compras" aria-hidden="true">
